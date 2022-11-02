@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>circulo progressivo</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+<div id="titulo">
+  <h2>CÍRCULO PROGRESSIVO</h2>
+</div>
+  <br> <br>
+<div class="container">
+  <div class="card">
+    <div class="box">
+      <div class="percent">
+        <svg>
+          <circle cx="70" cy="70" r="70"></circle>
+          <circle id="circle1" cx="70" cy="70" r="70"></circle>
+        </svg>
+        <div class="number">
+          <h2><b id="percent1">0</b><span>%</span></h2>
+        </div>
+      </div>
+      <h2 class="text">Html</h2>
+    </div>
+  </div>
+  <div class="card">
+    <div class="box">
+      <div class="percent">
+        <svg>
+          <circle cx="70" cy="70" r="70"></circle>
+          <circle id="circle2" cx="70" cy="70" r="70"></circle>
+        </svg>
+        <div class="number">
+          <h2><b id="percent2">0</b><span>%</span></h2>
+        </div>
+      </div>
+      <h2 class="text">Css</h2>
+    </div>
+  </div>
+  <div class="card">
+    <div class="box">
+      <div class="percent">
+        <svg>
+          <circle cx="70" cy="70" r="70"></circle>
+          <circle id="circle3" cx="70" cy="70" r="70"></circle>
+        </svg>
+        <div class="number">
+          <h2><b id="percent3">0</b><span>%</span></h2>
+        </div>
+      </div>
+      <h2 class="text">Javascript</h2>
+    </div>
+  </div>
+</div>
+
+<script>
+  let percent = 0
+  let time
+
+  function animate(id1, id2, start, end, duration) {
+    if (start === end) return;
+    const range = end - start;
+    let current = start;
+    const increment = end > start ? 1 : -1;
+    const stepTime = Math.abs(Math.floor(duration / range));
+    const obj1 = document.getElementById(id1);
+    const obj2 = document.getElementById(id2);
+    const timer = setInterval(function () {
+      current += increment;
+      obj1.innerHTML = current;
+      obj2.style.strokeDashoffset = `${440 - (440 * current) / 100}`
+      if (current === end) {
+        clearInterval(timer);
+      }
+    }, stepTime);
+  }
+
+  animate("percent1", "circle1", 0, 90, 5000)
+  animate("percent2", "circle2", 0, 85, 5000)
+  animate("percent3", "circle3", 0, 60, 5000)
+</script>
+</body>
+</html>
